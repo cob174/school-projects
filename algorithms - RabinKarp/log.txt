@@ -1,0 +1,24 @@
+11/29: created necessary project shell
+11/30: developed init, search, hash, verify
+11/1: developed dump, probability. testing was giving me seg faults due to init improperly
+assigning char
+12/2: submission
+
+
+Development/operation
+This software was developed as version of the Rabin-Karp Algorithm utilizing both vegas
+and Monte Carlo rules. When searching for a matching pattern, if the vegas rules is specified,
+the software will verify the potential pattern match before returning an index in the string.
+Probability was designed to take the subtract the potential for error from 1.0 to calculate 
+the probability of success but, working with long doubles is a finicky task and wouldn't work.
+
+Testing
+Testing was performed by performing a variety of test utilizing varying lengths and characters
+for both strings and patterns.
+
+Generalizations
+Instead of hashing for the ascii value of a single character, non-ascii alphabets still have 
+unique identifiers for each of their characters, these characters could then be numerically
+organized and used to hash. To accommodate larger search spaces, the prime value used for hashing
+would have to be increased to an appropriately sized prime number. 
+

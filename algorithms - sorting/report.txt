@@ -1,0 +1,97 @@
+Improving Performance of MergeSort and QuickSor
+
+Abstract
+This report provides detailed information on a variety of sorting algorithm implementation
+utilizing selection, insertion, merge, and quick sorts as well as optimized versions of 
+certain sorting algorithms. Merge sort is also performed several ways including top-down,
+bottom up, and its optimized algorithm with cutoffs. We also analyize the Cormen
+quick sort, 3 way quick sort, and optimised versions with cutoff. All of this is done with
+the intention of determining the trade-offs of each. Much of the code was adapted from course
+notes and modified to suite optimization as well as kept in the standard form.
+
+Introduction
+Sorting algorithms are performed on a situational basis depending on the ideal situation
+for each algorithm relative to speed and various other sorting trade-off. In this paper,
+I will analyze my results from various tests in implementation.
+
+Background
+Each sort is analyzed against the theoretical run time of each algorithm as well as my 
+personal experimentation. As a foundation for this analysis, we must understand the 
+theoretical worst case runtimes of each sorting algorithm.
+						runtime			runspace
+top-down merge sort: 	Θ(n log n)		Θ(n)
+quick sort:				Θ(n^2)			Ω(n)
+
+*information acquired from class notes
+
+Data Analysis
+
+To test my assumptions, I utilized the ranuint file provided in the course library to create
+a series of test files of random items with count ranging from 100, 1000, and 10000.
+
+	Merge Sort - Optimized
+		To analyze the necessity of merging I started by determining if the top element of 
+		the left hand set was less than the bottom element of the right hand set. If this was 
+		the case, then no merge was necessary as the sets would evidentally have already been sorted
+		accordingly. In addition to this, it appeared that the optimized version improved in speed
+		until the cutoff reached and and plateaued from there onward.
+		
+	Quick Sort - Optimized
+		This sort function, increases in efficiency incrementally until it plateaus at a cutoff 
+		of 11.
+		
+	Quick Sort 3 way - Optimized
+		This was interesting in that its speed was generally constant with only minor variation even
+		relative to the unoptomized version until a noticable efficiency increase when the cutoff
+		is set to 13
+
+Analysis Results
+Quick Sory is ideal for largely randomized input data
+3 way quicksort is ideal for data with a large amount of similar, less randomized data.
+Merge Sort doesn't generally run particularly well in comparison to the other sorting algorithms.
+
+
+Appendix I
+
+samples of time data collected in seconds
+
+algorithm				6		8		11		12		13		14		16
+
+g_selection_sort		.384115	.382709	.383375	.383889	.383569	.383101	.383596
+g_insertion_sort		.256528	.255538	.256626	.256587	.256512	.256682	.256627
+g_quick_sort			.003322	.003320	.003314	.003296	.003318	.003320	.003318
+g_quick_sort_opt		.003207	.003167	.003116	.003106	.003127	.003073	.003088
+g_quick_sort_3w			.003755	.003769	.003745	.003692	.003690	.003689	.003697
+g_quick_sort_3w_opt		.003684	.003651	.003599	.003671	.003647	.003636	.003626
+g_merge_sort			.004026	.004025	.004034	.004030	.004042	.004035	.004035
+g_merge_sort_opt		.003238	.003244	.003073	.003076	.003075	.003076	.003076
+g_merge_sort_bu			.003556	.003557	.003552	.003563	.003566	.003569	.003553
+List::Sort				.004349	.004348	.004347	.004343	.004354	.004348	.004356
+alt::g_heap_sort		.006088	.005716	.005776	.005968	.005871	.005832	.005853
+fsu::g_heap_sort		.005500	.005491	.005515	.005459	.005491	.005594	.005542
+cormen::g_heap_sort		.005491	.005474	.005479	.005460	.005495	.005547	.005490
+
+Appendix II
+See report
+
+Optimization Check List
+
+Function																	Status
+g_merge_sort_opt (RAIterator beg, RAIterator end)							complete
+g_merge_sort_opt (RAIterator beg, RAIterator end, Comparator& cmp)			complete
+g_quick_sort_opt (IterType beg, IterType end)								complete
+g_quick_sort_opt (IterType beg, IterType end, Comparator& cmp)				complete
+g_quick_sort_3w_opt (IterType beg, IterType end)							complete
+g_quick_sort_3w_opt (IterType beg, IterType end, Comparator& cmp)			complete
+
+Work Log
+9/20: collected all necessary files as well as analyzing of provided code and how to implement
+9/22: Selection sort and merge sort(unoptomized) completed
+9/25: Quick Sort(unoptimized) completed, stuck on 3-way and seg faulting a lot
+9/27: 3-way solved just poor derefrencing practices and letting my algorithms go out of bounds for deque
+10/1: Getting backed up on school because of job, but optimization in progress. more seg faults....
+10/5: Optimization complete, testing.
+10/6: more testing
+10/7: testing complete
+10/8: Report writeup
+10/9: submission

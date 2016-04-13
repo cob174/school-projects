@@ -1,0 +1,1 @@
+g++ -Wall -g -pedantic -std=c++11 -o NaiveBayes main.cpp
